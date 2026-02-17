@@ -6,7 +6,7 @@ CXXFLAGS = -Wall -std=c++17
 TARGET = qcode
 
 # Source and object files
-SRCS = main.cpp QuantumState.cpp
+SRCS = QuantumState.h QuantumGates.h QuantumState.cpp QuantumGates.cpp main.cpp 
 OBJDIR = build
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 
