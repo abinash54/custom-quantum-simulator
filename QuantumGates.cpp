@@ -48,3 +48,26 @@ void GenericGate::ApplyPhaseflip(QuantumState* qstate, int16_t q_target){
 
     std::cout << "Phase flip operation completed successfully" << std::endl; 
 }
+
+void GenericGate::ApplyHadamard(QuantumState* qstate, int16_t q_target) {
+    // finding targetmask
+    int64_t target_mask = (int64_t)1 <<  q_target;
+    double inv_sqrt2 = 1/std::sqrt(2.0);
+
+    // finding all states with target bit as 0, and finding partner by setting it 1, then modify amplitudes
+    int64_t vector_len = qstate->hSpaceSize;
+    for(int64_t i=0;i<vector_len;++i){
+        int64_t partner_idx = i ^ target_mask;
+        if(partner_idx & target_mask){
+            std::complex<double> new_amp_0 = (qstate->state_vector_space[i] + qstate->state_vector_space[partner_idx])*inv_sqrt2;
+
+            std::complex<double> new_amp_1 = (qstate->state_vector_space[i] - qstate->state_vector_space[partner_idx])*inv_sqrt2;
+
+            // setting new amps
+            qstate->state_vector_space[i] = new_amp_0;
+            qstate->state_vector_space[partner_idx] = new_amp_1;
+        }
+    }
+    std::cout << "Hadamard applied successfully" << std::endl;
+    return;
+}

@@ -49,5 +49,13 @@ int main(int argc, char* argv[]){
     qstate.display_sys_state();
     std::cout << "Is Valid? " << (qstate.is_sys_valid() ? "Yes" : "No") << std::endl;
 
+    // trying hadamard
+    gate.ApplyHadamard(&qstate, 2);
+    // 3. Print the resulting state
+    std::cout << "\nState after hadamard at qubit 2:" << std::endl;
+    qstate.display_sys_state();
+    std::cout << "Is Valid? " << (qstate.is_sys_valid() ? "Yes" : "No") << std::endl;
+
+
     return 0;
 }

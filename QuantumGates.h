@@ -23,7 +23,7 @@ public:
     void ApplyBitflip(QuantumState* qstate);
 
     // hadamard gate
-    void ApplyHadamard();
+    void ApplyHadamard(QuantumState* qstate, int16_t q_target);
 };
 
 #endif // QUANTUM_GATES_H
